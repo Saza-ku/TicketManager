@@ -312,14 +312,16 @@ namespace TicketManager.LineBotApi
             var json = JsonConvert.SerializeObject(message);
 
             // リクエストの内容を用意
-            var content =
-                new StringContent(json, Encoding.UTF8, "application/json");
-            content.Headers.Add("Authorization",
+            var request =
+                new HttpRequestMessage(HttpMethod.Post, "https://api.line.me/v2/bot/message/multicast");
+
+            request.Headers.Add("Authorization",
                 $"Bearer {Environment.GetEnvironmentVariable("ACCESS_TOKEN")}");
+            request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+
 
             // リクエスト送信
-            var response = await httpClient.PostAsync
-                ("https://api.line.me/v2/bot/message/multicast", content);
+            var response = await httpClient.SendAsync(request);
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 var res = await response.Content.ReadAsStringAsync();
