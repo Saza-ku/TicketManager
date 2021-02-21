@@ -42,9 +42,14 @@ namespace TicketManager.LineBotApi
                         break;
                 }
             }
-            catch
+            catch(LineBotException ex)
+            {
+                await SendTextReplyAsync(ev.replyToken, ex.Message);
+            }
+            catch(Exception ex)
             {
                 logger.LogError($"不明なエラー: {ev.message.text}");
+                logger.LogError($"エラー内容: {ex.Message}");
                 await SendTextReplyAsync(ev.replyToken, $"不明なエラーです。{rt}そうちゃんに教えてあげよう！");
             }
             
