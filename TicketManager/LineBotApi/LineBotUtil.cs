@@ -314,6 +314,8 @@ namespace TicketManager.LineBotApi
             // リクエストの内容を用意
             var content =
                 new StringContent(json, Encoding.UTF8, "application/json");
+            content.Headers.Add("Authorization",
+                $"Bearer {Environment.GetEnvironmentVariable("ACCESS_TOKEN")}");
 
             // リクエスト送信
             var response = await httpClient.PostAsync
