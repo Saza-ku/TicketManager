@@ -259,7 +259,7 @@ namespace TicketManager.LineBotApi
             UpdateCount(stage, isShinkan, context);
             var to = context.NotifiedMemberIds.AsNoTracking().Select(m => m.Id).ToArray();
             string message = $"予約が削除されました: {reservation.DramaName}" + rt;
-            message = message + $"{reservation.StageNum}: {stage.CountOfGuests}人 / {stage.Max}人";
+            message = message + $"{reservation.StageNum}st: {stage.CountOfGuests}人 / {stage.Max}人";
             await SendMessage(message, to);
 
             // リターンする文字列を作成
