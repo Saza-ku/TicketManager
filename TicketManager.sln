@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.808.5
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketManager", "TicketManager\TicketManager.csproj", "{743109DF-7451-4BF0-8DD3-6BD1CDDFF260}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FFCD78DB-D060-4BCA-A02D-E830DAA84A83}"
+	ProjectSection(SolutionItems) = preProject
+		heroku.yml = heroku.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{743109DF-7451-4BF0-8DD3-6BD1CDDFF260}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{743109DF-7451-4BF0-8DD3-6BD1CDDFF260}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{743109DF-7451-4BF0-8DD3-6BD1CDDFF260}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{743109DF-7451-4BF0-8DD3-6BD1CDDFF260}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B334587B-D1DE-4D4D-98A4-8169E366510A}
+	EndGlobalSection
+EndGlobal

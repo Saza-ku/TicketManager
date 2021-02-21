@@ -1,0 +1,60 @@
+﻿@model OutsideReservation
+@{
+    var isShinkan = (bool)(ViewData["IsShinkan"]);
+}
+
+<h1>団員予約削除</h1>
+<h3>@Model.DramaName</h3>
+<h6>本当に削除しますか？</h6>
+
+<div>
+    <h4>Movie</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.GuestName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.GuestName)
+        </dd>
+        @if (isShinkan)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NumOfFreshmen)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumOfFreshmen)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NumOfOthers)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumOfOthers)
+            </dd>
+        }
+        else
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NumOfGuests)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumOfGuests)
+            </dd>
+        }
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StageNum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StageNum)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete" asp-route-id="@Model.DramaName"
+          asp-route-reservationId="@Model.Id">
+        <input type="submit" value="削除" class="btn btn-danger" /> |
+        <a asp-controller="Stage" asp-action="Index"
+            asp-route-id="@Model.DramaName" asp-route-num="@Model.StageNum">
+            戻る
+        </a>
+    </form>
+</div>

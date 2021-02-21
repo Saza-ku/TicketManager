@@ -1,0 +1,35 @@
+﻿@model Drama[]
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-controller="Drama" asp-action="Create">Create New</a>
+</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                公演名
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Drama" asp-action="Index" asp-route-id="@item.Name">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,11 @@
+﻿
+<h1>ログアウト</h1>
+
+<p>ログアウトしますか？</p>
+<form asp-controller="Identity" asp-action="Logout">
+    <input formmethod="post" type="submit" value="LOGOUT" class="btn btn-primary" />
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

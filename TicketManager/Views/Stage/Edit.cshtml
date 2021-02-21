@@ -1,0 +1,42 @@
+﻿@model TicketManager.Models.EditStagesModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>ステージ編集</h1>
+<h2>@ViewData["DramaName"]</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Stage" asp-action="Edit" method="post">
+            @for (int i = 0; i < Model.Stages.Length; i++)
+            {
+                <h4>@(i+1) st</h4>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Stages[i].Time" class="control-label"></label>
+                        <input asp-for="Stages[i].Time" class="form-control" />
+                        <span asp-validation-for="Stages[i].Time" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Stages[i].Max" class="control-label"></label>
+                        <input asp-for="Stages[i].Max" class="form-control" />
+                        <span asp-validation-for="Stages[i].Max" class="text-danger"></span>
+                    </div>
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="登録" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

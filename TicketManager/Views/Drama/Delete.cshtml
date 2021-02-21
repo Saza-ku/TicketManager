@@ -1,0 +1,14 @@
+﻿@model Drama
+
+<h1>公演削除</h1>
+<h3>@Model.Name</h3>
+<h6>本当に削除しますか？</h6>
+
+<div>
+    <form asp-action="Delete" asp-route-id="@Model.Name">
+        <input type="submit" value="削除" class="btn btn-danger" /> |
+        <a asp-controller="Stage" asp-action="Index" asp-route-id="@Model.Name">
+            戻る
+        </a>
+    </form>
+</div>

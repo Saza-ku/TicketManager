@@ -1,0 +1,59 @@
+﻿@model TicketManager.Models.MemberReservation
+
+@{
+    var dramaName = ViewData["DramaName"];
+}
+<h1>団員予約登録</h1>
+<h1>@dramaName</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="GuestName" class="control-label"></label>
+                <input asp-for="GuestName" class="form-control" />
+                <span asp-validation-for="GuestName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Furigana" class="control-label"></label>
+                <input asp-for="Furigana" class="form-control" />
+                <span asp-validation-for="Furigana" class="text-danger"></span>
+            </div>
+            @if ((bool)(ViewData["IsShinkan"]))
+            {
+                <div class="form-group">
+                    <label asp-for="NumOfFreshmen" class="control-label"></label>
+                    <input asp-for="NumOfFreshmen" class="form-control" />
+                    <span asp-validation-for="NumOfFreshmen" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumOfOthers" class="control-label"></label>
+                    <input asp-for="NumOfOthers" class="form-control" />
+                    <span asp-validation-for="NumOfOthers" class="text-danger"></span>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <label asp-for="NumOfGuests" class="control-label"></label>
+                    <input asp-for="NumOfGuests" class="form-control" />
+                    <span asp-validation-for="NumOfGuests" class="text-danger"></span>
+                </div>
+            }
+            <div class="form-group">
+                <label asp-for="StageNum" class="control-label"></label>
+                <input asp-for="StageNum" class="form-control" />
+                <span asp-validation-for="StageNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MemberName" class="control-label"></label>
+                <input asp-for="MemberName" class="form-control" />
+                <span asp-validation-for="MemberName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input formmethod="post" type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

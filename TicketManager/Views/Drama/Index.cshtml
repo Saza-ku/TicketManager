@@ -1,0 +1,70 @@
+﻿@model Stage[]
+
+@{
+    ViewData["Title"] = "Index";
+    var dramaName = ViewData["DramaName"];
+}
+
+<h1>@dramaName</h1>
+
+<p>
+    <a asp-controller="MemberReservation" asp-action="Create" asp-route-id="@dramaName">団員予約を登録する</a>
+</p>
+<p>
+    <a asp-controller="OutsideReservation" asp-action="Create" asp-route-id="@dramaName">一般予約を登録する</a>
+</p>
+<p>
+    <a asp-controller="OutsideReservation" asp-action="CreateRange" asp-route-id="@dramaName">一般予約を一括で登録する</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ステージ
+            </th>
+            <th>
+                日時
+            </th>
+            <th>
+                予約数
+            </th>
+            <th>
+                キャパ
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Stage" asp-for="Index" asp-route-id="@item.DramaName" asp-route-num="@item.Num">
+                        @item.Num st
+                    </a>
+                </td>
+                <td>
+                    @item.Time
+                </td>
+                <td>
+                    @item.CountOfGuests
+                </td>
+                <td>
+                    @item.Max
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="form-group">
+    <form methohd="post" asp-controller="Drama" asp-action="Export" asp-route-id="@dramaName">
+        <input type="submit" value="CSVを出力" class="btn btn-primary" />
+    </form>
+</div>
+<p>
+    <a asp-controller="Stage" asp-action="Edit" asp-route-id="@dramaName">ステージを編集する</a>
+</p>
+<p>
+    <a asp-controller="Drama" asp-action="Delete" asp-route-id="@dramaName">公演を削除する</a>
+</p>

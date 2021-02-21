@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item">
+        <div  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">ログイン中: @User.Identity.Name</div>
+    </li>
+    <li class="nav-item">
+        <form  class="form-inline" asp-controller="Identity" asp-action="Logout" method="get">
+            <button  type="submit" class="nav-link btn btn-link text-dark">ログアウト</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-controller="Identity" asp-action="Register">アカウント登録</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-contorller="Identity" asp-action="Login">ログイン</a>
+    </li>
+}
+</ul>

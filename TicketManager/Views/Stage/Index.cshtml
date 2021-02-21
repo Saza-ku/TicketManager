@@ -1,0 +1,164 @@
+﻿@model TicketManager.Models.StageViewModel
+
+<div class="row">
+    <div class="col-2">
+        <h2>@Model.Stage.DramaName</h2>
+    </div>
+    <div class="col-2">
+        <h3>@Model.Stage.Num st</h3>
+    </div>
+</div>
+
+<h6>@Model.Stage.Time</h6>
+
+<dl class="row">
+    <dt class="col-1">予約数</dt>
+    <dd class="col-1">@Model.Stage.CountOfGuests</dd>
+    <dt class="col-1">キャパ</dt>
+    <dd class="col-1">@Model.Stage.Max</dd>
+</dl>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>名前</th>
+            <th>フリガナ</th>
+            @if ((bool)(ViewData["IsShinkan"]))
+            {
+                <th>新入生</th>
+                <th>新入生以外</th>
+            }
+            else
+            {
+                <th>人数</th>
+            }
+            <th>団員名</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservation in Model.MemberReservations)
+        {
+            <tr>
+                <td>
+                    @reservation.GuestName
+                </td>
+                <td>
+                    @reservation.Furigana
+                </td>
+                @if ((bool)(ViewData["IsShinkan"]))
+                {
+                    <td>
+                        @reservation.NumOfFreshmen
+                    </td>
+                    <td>
+                        @reservation.NumOfOthers
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @reservation.NumOfGuests
+                    </td>
+                }
+                <td>
+                    @reservation.MemberName
+                </td>
+                <td>
+                    <a asp-controller="MemberReservation"
+                       asp-action="Edit"
+                       asp-route-id="@Model.Stage.DramaName"
+                       asp-route-reservationId="@reservation.Id">
+                        変更
+                    </a> |
+                    <a asp-controller="MemberReservation"
+                       asp-action="Delete"
+                       asp-route-id="@Model.Stage.DramaName"
+                       asp-route-reservationId="@reservation.Id">
+                        削除
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>名前</th>
+            <th>フリガナ</th>
+            @if ((bool)(ViewData["IsShinkan"]))
+            {
+                <th>新入生</th>
+                <th>新入生以外</th>
+            }
+            else
+            {
+                <th>人数</th>
+            }
+            <th>メールアドレス</th>
+            <th>連絡先</th>
+            <th>備考</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservation in Model.OutsideReservations)
+        {
+            <tr>
+                <td>
+                    @reservation.GuestName
+                </td>
+                <td>
+                    @reservation.Furigana
+                </td>
+                @if ((bool)(ViewData["IsShinkan"]))
+                {
+                    <td>
+                        @reservation.NumOfFreshmen
+                    </td>
+                    <td>
+                        @reservation.NumOfOthers
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @reservation.NumOfGuests
+                    </td>
+                }
+                <td>
+                    @reservation.Email
+                </td>
+                <td>
+                    @reservation.PhoneNumber
+                </td>
+                <td>
+                    @reservation.Remarks
+                </td>
+                <td>
+                    <a asp-controller="OutsideReservation"
+                       asp-action="Edit"
+                       asp-route-id="@Model.Stage.DramaName"
+                       asp-route-reservationId="@reservation.Id">
+                        変更
+                    </a> |
+                    <a asp-controller="OutsideReservation"
+                       asp-action="Delete"
+                       asp-route-id="@Model.Stage.DramaName"
+                       asp-route-reservationId="@reservation.Id">
+                        削除
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="form-group">
+    <form methohd="post" asp-controller="Stage" asp-action="Export"
+          asp-route-id="@Model.Stage.DramaName" asp-route-n="@Model.Stage.Num">
+        <input type="submit" value="CSVを出力" class="btn btn-primary" />
+    </form>
+</div>
