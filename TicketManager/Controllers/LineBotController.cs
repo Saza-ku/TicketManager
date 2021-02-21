@@ -37,8 +37,6 @@ namespace TicketManager.Controllers
         [HttpPost]
         public async Task<ActionResult> Post()
         {
-            logger.LogInformation($"AccessToken: {accessToken}");
-            logger.LogInformation($"ChannelSecret: {channelSecret}");
             // リクエストを取得
             var req = HttpContext.Request;
             var body = await new StreamReader(req.Body).ReadToEndAsync();

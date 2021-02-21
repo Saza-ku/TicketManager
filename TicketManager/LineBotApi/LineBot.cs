@@ -126,7 +126,7 @@ namespace TicketManager.LineBotApi
 
             // リクエスト送信
             var response = await httpClient.PostAsync
-                ("https://api.line.me/v2/bot/message/multicast", content);
+                ("https://api.line.me/v2/bot/message/reply", content);
 
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
