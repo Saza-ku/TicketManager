@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{743109DF-7451-4BF0-8DD3-6BD1CDDFF260}|Default">
   <MonoDevelop.Ide.ItemProperties.TicketManager PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TicketManager/LineBotApi/Models/LineUserProfile.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TicketManager/Views/Usage/Bot.cshtml">
     <Files>
       <File FileName="TicketManager/Data/TicketContext.cs" Line="14" Column="46" />
-      <File FileName="TicketManager/LineBotApi/LineBotUtil.cs" Line="365" Column="81" />
+      <File FileName="TicketManager/LineBotApi/LineBotUtil.cs" Line="208" Column="29" />
       <File FileName="TicketManager/LineBotApi/LineBot.cs" Line="39" Column="103" />
       <File FileName="TicketManager/LineBotApi/Models/LineTextMessage.cs" />
       <File FileName="TicketManager/LineBotApi/Models/LineTextReply.cs" />
@@ -12,7 +12,7 @@
       <File FileName="TicketManager/Models/Stage.cs" />
       <File FileName="TicketManager/LineBotApi/Models/Message.cs" />
       <File FileName="TicketManager/Controllers/StageController.cs" />
-      <File FileName="TicketManager/Controllers/DramaController.cs" Line="119" Column="94" />
+      <File FileName="TicketManager/Controllers/DramaController.cs" Line="119" Column="85" />
       <File FileName="TicketManager/Models/Drama.cs" />
       <File FileName="TicketManager/Controllers/IdentityController.cs" />
       <File FileName="TicketManager/Models/IdInputModel.cs" />
@@ -39,12 +39,13 @@
       <File FileName="TicketManager/Startup.cs" />
       <File FileName="TicketManager/Program.cs" />
       <File FileName="heroku.yml" />
-      <File FileName="TicketManager/Controllers/LineBotController.cs" Line="1" Column="1" />
+      <File FileName="TicketManager/Controllers/LineBotController.cs" Line="42" Column="74" />
       <File FileName="TicketManager/Data/DbInitializer.cs" />
       <File FileName="TicketManager/LineBotApi/Models/MessageEvent.cs" />
       <File FileName="TicketManager/LineBotApi/Models/Source.cs" />
       <File FileName="TicketManager/LineBotApi/Models/LineWebhookObject.cs" />
-      <File FileName="TicketManager/LineBotApi/Models/LineUserProfile.cs" Line="7" Column="1" />
+      <File FileName="TicketManager/LineBotApi/Models/LineUserProfile.cs" Line="8" Column="32" />
+      <File FileName="TicketManager/Views/Usage/Bot.cshtml" Line="435" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -55,8 +56,11 @@
               <Node name="Controllers" expanded="True" />
               <Node name="Data" expanded="True" />
               <Node name="LineBotApi" expanded="True">
-                <Node name="Models" expanded="True">
-                  <Node name="LineUserProfile.cs" selected="True" />
+                <Node name="Models" expanded="True" />
+              </Node>
+              <Node name="Views" expanded="True">
+                <Node name="Usage" expanded="True">
+                  <Node name="Bot.cshtml" selected="True" />
                 </Node>
               </Node>
             </Node>
