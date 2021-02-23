@@ -94,6 +94,9 @@ namespace TicketManager.LineBotApi
                 case "おきてる":
                     message = "起きてるよー！";
                     break;
+                case "使用方法":
+                    message = "http://ticket-manager-2021-saza.herokuapp.com/Usage/Bot";
+                    break;
                 default:
                     return;
             }
