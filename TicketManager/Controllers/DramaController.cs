@@ -117,7 +117,8 @@ namespace TicketManager.Controllers
                 newStage.Num = i + 1;
                 // 東京での現在時刻を取
                 var jstZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
-                newStage.Time = DateTime.JstNow.ToString("M月d日(ddd)HH時", culture);
+                newStage.Time = TimeZoneInfo.ConvertTime
+                    (DateTimeOffset.Now, jstZoneInfo).DateTime.ToString("M月d日(ddd)HH時", culture);
                 newStages[i] = newStage;
             }
             context.Stages.AddRange(newStages);
