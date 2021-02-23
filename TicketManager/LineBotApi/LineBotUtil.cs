@@ -205,7 +205,7 @@ namespace TicketManager.LineBotApi
             await context.SaveChangesAsync();
 
             // リターンする文字列を作成
-            var ret = "予約を削除しました" + rt + rt;
+            var ret = "予約を変更しました" + rt + rt;
             ret = ret + "公演名: " + reservation.DramaName + rt;
             ret = ret + "名前: " + reservation.DramaName + rt;
             ret = ret + "ステージ: " + reservation.StageNum + "st" + rt;
