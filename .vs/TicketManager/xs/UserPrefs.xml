@@ -1,10 +1,10 @@
 ﻿<Properties StartupConfiguration="{743109DF-7451-4BF0-8DD3-6BD1CDDFF260}|Default">
   <MonoDevelop.Ide.ItemProperties.TicketManager PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TicketManager/Views/Usage/Bot.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TicketManager/Controllers/UsageController.cs">
     <Files>
       <File FileName="TicketManager/Data/TicketContext.cs" Line="14" Column="46" />
       <File FileName="TicketManager/LineBotApi/LineBotUtil.cs" Line="208" Column="29" />
-      <File FileName="TicketManager/LineBotApi/LineBot.cs" Line="39" Column="103" />
+      <File FileName="TicketManager/LineBotApi/LineBot.cs" Line="39" Column="91" />
       <File FileName="TicketManager/LineBotApi/Models/LineTextMessage.cs" />
       <File FileName="TicketManager/LineBotApi/Models/LineTextReply.cs" />
       <File FileName="TicketManager/Controllers/OutsideReservationController.cs" />
@@ -46,6 +46,7 @@
       <File FileName="TicketManager/LineBotApi/Models/LineWebhookObject.cs" />
       <File FileName="TicketManager/LineBotApi/Models/LineUserProfile.cs" Line="8" Column="32" />
       <File FileName="TicketManager/Views/Usage/Bot.cshtml" Line="435" Column="1" />
+      <File FileName="TicketManager/Controllers/UsageController.cs" Line="14" Column="33" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -53,16 +54,11 @@
           <Node name="TicketManager" expanded="True">
             <Node name="Solution Items" expanded="True" />
             <Node name="TicketManager" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Data" expanded="True" />
-              <Node name="LineBotApi" expanded="True">
-                <Node name="Models" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="UsageController.cs" selected="True" />
               </Node>
-              <Node name="Views" expanded="True">
-                <Node name="Usage" expanded="True">
-                  <Node name="Bot.cshtml" selected="True" />
-                </Node>
-              </Node>
+              <Node name="LineBotApi" expanded="True" />
+              <Node name="Views" expanded="True" />
             </Node>
           </Node>
         </State>

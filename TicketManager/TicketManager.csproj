@@ -15,6 +15,7 @@
     <Folder Include="LineBotApi\Models\" />
     <Folder Include="Views\Identity\" />
     <Folder Include="Views\Usage\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.11">

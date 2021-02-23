@@ -16,6 +16,36 @@ namespace TicketManager.LineBotApi
     public class LineBotUtil
     {
         private static readonly string rt = Environment.NewLine;
+
+        private static readonly string createUsageMessage =
+            "予約追加のメッセージフォーマットに従っていません。" + rt +
+            "予約を追加するには、以下のフォーマットに従ってメッセージを送ります。" + rt +
+            "1 行目: 予約追加（または、団員予約）" + rt +
+            "2 行目: < 公演名 >（制作チーフに聞いてください）" + rt +
+            "3 行目: < 氏名 >" + rt +
+            "4 行目: < フリガナ > " + rt +
+            "5 行目: < ステージ番号 >（2st, 3st など）" + rt +
+            "6 行目: < 人数 >（新歓公演の場合は、< 新入生の人数 >）" + rt +
+            "7 行目: < 新入生以外の人数 >（新歓公演の場合のみ）";
+        private static readonly string readUsageMessage =
+            "予約確認のメッセージフォーマットに従っていません。" + rt +
+            "予約を確認するには、以下のフォーマットに従ってメッセージを送ります。" + rt +
+            "1 行目: 予約確認（または、予約一覧）" + rt +
+            "2 行目: <公演名>";
+        private static readonly string editUsageMessage =
+            "予約変更のメッセージフォーマットに従っていません。" + rt +
+            "予約を変更するには、以下のフォーマットに従ってメッセージを送ります。" + rt +
+            "1 行目: 予約変更（または、予約編集）" + rt +
+            "2 行目: <予約 ID>" + rt +
+            "3 行目: <ステージ番号>" + rt +
+            "4 行目: <人数>（新歓公演の場合は、<新入生の人数>）" + rt +
+            "5 行目: <新入生以外の人数>（新歓公演の場合のみ）";
+        private static readonly string deleteUsageMessage =
+            "予約削除のメッセージフォーマットに従っていません" + rt +
+            "予約を削除するには、以下のフォーマットに従ってメッセージを送ります。" + rt +
+            "1 行目: 予約削除（または、予約キャンセル）" + rt +
+            "2 行目: <予約 ID>";
+
         public static bool LineValidation(string signature, string text, string channelToken)
         {
             var textBytes = Encoding.UTF8.GetBytes(text);
@@ -33,7 +63,7 @@ namespace TicketManager.LineBotApi
         {
             if (items.Length < 2)
             {
-                throw new LineBotException($"予約追加のメッセージフォーマットに従っていません。");
+                throw new LineBotException(createUsageMessage);
             }
             var drama = context.Dramas.FirstOrDefault(d => d.Name == items[1]);
             if (drama == null)
@@ -43,7 +73,7 @@ namespace TicketManager.LineBotApi
             int itemCount = drama.IsShinkan ? 7 : 6;
             if (items.Length != itemCount)
             {
-                throw new LineBotException($"予約追加のメッセージフォーマットに従っていません。");
+                throw new LineBotException(createUsageMessage);
             }
             
 
@@ -73,7 +103,7 @@ namespace TicketManager.LineBotApi
             }
             catch (FormatException)
             {
-                throw new LineBotException($"予約追加のメッセージフォーマットに従っていません。");
+                throw new LineBotException(createUsageMessage);
             }
 
             // 予約を登録
@@ -114,7 +144,7 @@ namespace TicketManager.LineBotApi
         {
             if (items.Length < 2)
             {
-                throw new LineBotException("予約確認のフォーマットに従っていません。");
+                throw new LineBotException(readUsageMessage);
             }
             var drama = context.Dramas.AsNoTracking()
                 .FirstOrDefault(d => d.Name == items[1]);
@@ -153,7 +183,7 @@ namespace TicketManager.LineBotApi
         {
             if (items.Length < 2)
             {
-                throw new LineBotException("予約変更のフォーマットに従っていません。");
+                throw new LineBotException(editUsageMessage);
             }
             int id;
             try
@@ -162,7 +192,7 @@ namespace TicketManager.LineBotApi
             }
             catch (FormatException)
             {
-                throw new LineBotException("予約変更のフォーマットに従っていません。");
+                throw new LineBotException(editUsageMessage);
             }
 
             var reservation = context.MemberReservations
@@ -178,7 +208,7 @@ namespace TicketManager.LineBotApi
             int itemCount = isShinkan ? 5 : 4;
             if (items.Length != itemCount)
             {
-                throw new LineBotException($"予約追加のメッセージフォーマットに従っていません。");
+                throw new LineBotException(editUsageMessage);
             }
 
             // コマンド, ID, st, 人数(新入生, それ以外) 
@@ -197,7 +227,7 @@ namespace TicketManager.LineBotApi
             }
             catch (FormatException)
             {
-                throw new LineBotException($"予約追加のメッセージフォーマットに従っていません。");
+                throw new LineBotException(editUsageMessage);
             }
 
             // 予約更新
@@ -227,7 +257,7 @@ namespace TicketManager.LineBotApi
         {
             if (items.Length < 2)
             {
-                throw new LineBotException("予約削除のフォーマットに従っていません。");
+                throw new LineBotException(deleteUsageMessage);
             }
             int id;
             try
@@ -236,7 +266,7 @@ namespace TicketManager.LineBotApi
             }
             catch (FormatException)
             {
-                throw new LineBotException("予約削除のフォーマットに従っていません。");
+                throw new LineBotException(deleteUsageMessage);
             }
 
             var reservation = context.MemberReservations

@@ -127,3 +127,4 @@
 /Users/soichiro/Projects/TicketManager/TicketManager/obj/Debug/netcoreapp3.1/Razor/Views/MemberReservation/Delete.cshtml.g.cs
 /Users/soichiro/Projects/TicketManager/TicketManager/obj/Debug/netcoreapp3.1/Razor/Views/OutsideReservation/Delete.cshtml.g.cs
 /Users/soichiro/Projects/TicketManager/TicketManager/obj/Debug/netcoreapp3.1/Razor/Views/Drama/Delete.cshtml.g.cs
+/Users/soichiro/Projects/TicketManager/TicketManager/obj/Debug/netcoreapp3.1/Razor/Views/Usage/Bot.cshtml.g.cs
