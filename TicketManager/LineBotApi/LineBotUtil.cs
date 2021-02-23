@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using TicketManager.LineBotApi.Models;
 using Newtonsoft.Json;
 using System.Net.Http;
+using System.IO;
 
 namespace TicketManager.LineBotApi
 {
@@ -53,6 +54,7 @@ namespace TicketManager.LineBotApi
             reservation.DramaName = items[1];
             reservation.GuestName = items[2];
             reservation.Furigana = items[3];
+            reservation.MemberName = await GetUserName(userId);
             try
             {
                 reservation.StageNum = int.Parse(items[4].Replace("st", ""));
@@ -92,7 +94,7 @@ namespace TicketManager.LineBotApi
             // リターンする文字列を作成
             var ret = "予約を登録しました" + rt + rt;
             ret = ret + "公演名: " + reservation.DramaName + rt;
-            ret = ret + "名前: " + reservation.DramaName + rt;
+            ret = ret + "名前: " + reservation.GuestName + rt;
             ret = ret + "ステージ: " + reservation.StageNum + "st" + rt;
             if (drama.IsShinkan)
             {
@@ -173,26 +175,24 @@ namespace TicketManager.LineBotApi
             var isShinkan = context.Dramas.AsNoTracking()
                 .FirstOrDefault(d => d.Name == reservation.DramaName).IsShinkan;
 
-            int itemCount = isShinkan ? 7 : 6;
+            int itemCount = isShinkan ? 5 : 4;
             if (items.Length != itemCount)
             {
                 throw new LineBotException($"予約追加のメッセージフォーマットに従っていません。");
             }
 
-            // コマンド, ID, 名前, ふりがな, st, 人数(新入生, それ以外) 
-            reservation.GuestName = items[2];
-            reservation.Furigana = items[3];
+            // コマンド, ID, st, 人数(新入生, それ以外) 
             try
             {
-                reservation.StageNum = int.Parse(items[4].Replace("st", ""));
+                reservation.StageNum = int.Parse(items[2].Replace("st", ""));
                 if (isShinkan)
                 {
-                    reservation.NumOfFreshmen = int.Parse(items[5].Replace("人", ""));
-                    reservation.NumOfOthers = int.Parse(items[6].Replace("人", ""));
+                    reservation.NumOfFreshmen = int.Parse(items[3].Replace("人", ""));
+                    reservation.NumOfOthers = int.Parse(items[4].Replace("人", ""));
                 }
                 else
                 {
-                    reservation.NumOfGuests = int.Parse(items[5].Replace("人", ""));
+                    reservation.NumOfGuests = int.Parse(items[3].Replace("人", ""));
                 }
             }
             catch (FormatException)
@@ -355,6 +355,23 @@ namespace TicketManager.LineBotApi
                 count += outsideReservations.Select(r => r.NumOfGuests).Sum();
             }
             stage.CountOfGuests = count;
+        }
+
+        private async static Task<string> GetUserName(string userId)
+        {
+            var httpClient = new HttpClient();
+            var request =
+                new HttpRequestMessage(HttpMethod.Get,
+                $"https://api.line.me/v2/bot/profile/{userId}");
+            request.Headers.Add("Authorization",
+                $"Bearer {Environment.GetEnvironmentVariable("ACCESS_TOKEN")}");
+
+
+            var response = await httpClient.SendAsync(request);
+
+            var body = await response.Content.ReadAsStringAsync();
+            var profile = JsonConvert.DeserializeObject<LineUserProfile>(body);
+            return profile.displayName;
         }
     }
 }

@@ -115,7 +115,9 @@ namespace TicketManager.Controllers
                 newStage.DramaName = dramaName;
                 newStage.Drama = newDrama;
                 newStage.Num = i + 1;
-                newStage.Time = DateTime.Now.ToString("M月d日(ddd)HH時", culture);
+                // 東京での現在時刻を取
+                var jstZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
+                newStage.Time = DateTime.JstNow.ToString("M月d日(ddd)HH時", culture);
                 newStages[i] = newStage;
             }
             context.Stages.AddRange(newStages);
