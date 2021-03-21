@@ -5,7 +5,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS publish
 WORKDIR "/src/TicketManager"
 COPY . .
 
-RUN dotnet ef database update
+RUN dotnet ef database update --version 3.1
 RUN dotnet publish "TicketManager.csproj" -c Release -o /app/publish
 
 FROM base AS final
