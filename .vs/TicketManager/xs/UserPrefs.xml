@@ -1,12 +1,12 @@
 ﻿<Properties StartupConfiguration="{743109DF-7451-4BF0-8DD3-6BD1CDDFF260}|Default">
   <MonoDevelop.Ide.ItemProperties.TicketManager PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TicketManager/Dockerfile">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TicketManager/Data/DbInitializer.cs">
     <Files>
       <File FileName="TicketManager/Views/Home/Index.cshtml" Line="10" Column="53" />
       <File FileName="TicketManager/Views/Drama/Create.cshtml" />
       <File FileName="TicketManager/Startup.cs" />
       <File FileName="TicketManager/Program.cs" Line="20" Column="24" />
-      <File FileName="heroku.yml" Line="1" Column="1" />
+      <File FileName="heroku.yml" />
       <File FileName="TicketManager/Controllers/LineBotController.cs" />
       <File FileName="TicketManager/Data/DbInitializer.cs" Line="8" Column="42" />
       <File FileName="TicketManager/LineBotApi/Models/MessageEvent.cs" />
@@ -15,33 +15,23 @@
       <File FileName="TicketManager/LineBotApi/Models/LineUserProfile.cs" />
       <File FileName="TicketManager/Views/Usage/Bot.cshtml" />
       <File FileName="TicketManager/Controllers/UsageController.cs" />
-      <File FileName="TicketManager/Models/MemberReservation.cs" Line="38" Column="48" />
-      <File FileName="TicketManager/Migrations/20210217135315_InitialCreate.cs" Line="1" Column="1" />
-      <File FileName="TicketManager/Controllers/MemberReservationController.cs" Line="1" Column="1" />
-      <File FileName="TicketManager/Views/Stage/Index.cshtml" Line="63" Column="38" />
-      <File FileName="TicketManager/LineBotApi/LineBotUtil.cs" Line="178" Column="42" />
-      <File FileName="TicketManager/Controllers/StageController.cs" Line="234" Column="42" />
-      <File FileName="TicketManager/Migrations/20210321121248_AddTwoColomnsInMemberReservations.cs" Line="1" Column="1" />
-      <File FileName="TicketManager/Migrations/20210321121248_AddTwoColomnsInMemberReservations.Designer.cs" Line="1" Column="1" />
-      <File FileName="TicketManager/Dockerfile" Line="1" Column="1" />
+      <File FileName="TicketManager/Models/MemberReservation.cs" />
+      <File FileName="TicketManager/Controllers/MemberReservationController.cs" />
+      <File FileName="TicketManager/Views/Stage/Index.cshtml" />
+      <File FileName="TicketManager/LineBotApi/LineBotUtil.cs" />
+      <File FileName="TicketManager/Controllers/StageController.cs" />
+      <File FileName="TicketManager/Migrations/20210321121248_AddTwoColomnsInMemberReservations.cs" />
+      <File FileName="TicketManager/Dockerfile" Line="8" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="TicketManager" expanded="True">
-            <Node name="Solution Items" expanded="True" />
             <Node name="TicketManager" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Data" expanded="True" />
-              <Node name="Migrations" expanded="True">
-                <Node name="20210217135315_InitialCreate.cs" expanded="True" />
-                <Node name="20210321121248_AddTwoColomnsInMemberReservations.cs" expanded="True" />
+              <Node name="Data" expanded="True">
+                <Node name="DbInitializer.cs" selected="True" />
               </Node>
-              <Node name="Models" expanded="True" />
-              <Node name="Views" expanded="True">
-                <Node name="Stage" expanded="True" />
-              </Node>
-              <Node name="Dockerfile" selected="True" />
+              <Node name="Migrations" expanded="True" />
             </Node>
           </Node>
         </State>

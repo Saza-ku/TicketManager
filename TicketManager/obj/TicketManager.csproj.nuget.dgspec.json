@@ -14,7 +14,7 @@
         "outputPath": "/Users/soichiro/Projects/TicketManager/TicketManager/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/soichiro/.config/NuGet/NuGet.Config"
+          "/Users/soichiro/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"

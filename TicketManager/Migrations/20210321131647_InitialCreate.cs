@@ -47,6 +47,17 @@ namespace TicketManager.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "NotifiedMemberIds",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NotifiedMemberIds", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -158,7 +169,7 @@ namespace TicketManager.Migrations
                 {
                     Name = table.Column<string>(nullable: false),
                     IsShinkan = table.Column<bool>(nullable: false),
-                    UserId = table.Column<string>(nullable: true)
+                    UserId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -168,7 +179,7 @@ namespace TicketManager.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -177,7 +188,7 @@ namespace TicketManager.Migrations
                 {
                     Num = table.Column<int>(nullable: false),
                     DramaName = table.Column<string>(nullable: false),
-                    Time = table.Column<string>(nullable: true),
+                    Time = table.Column<string>(nullable: false),
                     Max = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -197,14 +208,16 @@ namespace TicketManager.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    GuestName = table.Column<string>(nullable: true),
+                    GuestName = table.Column<string>(nullable: false),
                     Furigana = table.Column<string>(nullable: true),
                     NumOfGuests = table.Column<int>(nullable: false),
                     NumOfFreshmen = table.Column<int>(nullable: false),
                     NumOfOthers = table.Column<int>(nullable: false),
-                    DramaName = table.Column<string>(nullable: true),
+                    DramaName = table.Column<string>(nullable: false),
                     StageNum = table.Column<int>(nullable: false),
                     MemberName = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
                     MemberId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -215,7 +228,7 @@ namespace TicketManager.Migrations
                         columns: x => new { x.DramaName, x.StageNum },
                         principalTable: "Stages",
                         principalColumns: new[] { "DramaName", "Num" },
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -224,12 +237,12 @@ namespace TicketManager.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    GuestName = table.Column<string>(nullable: true),
+                    GuestName = table.Column<string>(nullable: false),
                     Furigana = table.Column<string>(nullable: true),
                     NumOfGuests = table.Column<int>(nullable: false),
                     NumOfFreshmen = table.Column<int>(nullable: false),
                     NumOfOthers = table.Column<int>(nullable: false),
-                    DramaName = table.Column<string>(nullable: true),
+                    DramaName = table.Column<string>(nullable: false),
                     StageNum = table.Column<int>(nullable: false),
                     Email = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
@@ -244,7 +257,7 @@ namespace TicketManager.Migrations
                         columns: x => new { x.DramaName, x.StageNum },
                         principalTable: "Stages",
                         principalColumns: new[] { "DramaName", "Num" },
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -319,6 +332,9 @@ namespace TicketManager.Migrations
 
             migrationBuilder.DropTable(
                 name: "MemberReservations");
+
+            migrationBuilder.DropTable(
+                name: "NotifiedMemberIds");
 
             migrationBuilder.DropTable(
                 name: "OutsideReservations");

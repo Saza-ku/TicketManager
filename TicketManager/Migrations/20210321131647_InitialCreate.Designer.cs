@@ -9,8 +9,8 @@ using TicketManager.Data;
 namespace TicketManager.Migrations
 {
     [DbContext(typeof(TicketContext))]
-    [Migration("20210321121248_AddTwoColomnsInMemberReservations")]
-    partial class AddTwoColomnsInMemberReservations
+    [Migration("20210321131647_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
