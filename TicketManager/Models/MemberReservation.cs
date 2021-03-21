@@ -32,6 +32,10 @@ namespace TicketManager.Models
         public int StageNum { get; set; }
         [DisplayName("団員名")]
         public string MemberName { get; set; } = "";
+        [DisplayName("電話番号")]
+        public string PhoneNumber { get; set; } = "";
+        [DisplayName("メールアドレス")]
+        public string Email { get; set; } = "";
         [Ignore]
         public string MemberId { get; set; } = "";
 

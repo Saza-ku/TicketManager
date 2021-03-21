@@ -140,6 +140,77 @@ namespace TicketManager.LineBotApi
             return ret;
         }
 
+        public async static Task<string> AddInCorona(TicketContext context, string[] items, string userId)
+        {
+            if (items.Length < 2)
+            {
+                throw new LineBotException(createUsageMessage);
+            }
+            var drama = context.Dramas.FirstOrDefault(d => d.Name == items[1]);
+            if (drama == null)
+            {
+                throw new LineBotException($"{items[1]}という公演は存在しません");
+            }
+            int itemCount = 7;
+            if (items.Length != itemCount)
+            {
+                throw new LineBotException(createUsageMessage);
+            }
+
+
+            // 予約を作成
+            MemberReservation reservation = new MemberReservation();
+            reservation.MemberId = userId;
+            // コマンド, 公演名, 名前, ふりがな, st, 電話番号, メールアドレス
+            reservation.DramaName = items[1];
+            reservation.GuestName = items[2];
+            reservation.Furigana = items[3];
+            reservation.MemberName = await GetUserName(userId);
+            try
+            {
+                reservation.StageNum = int.Parse(items[4].Replace("st", ""));
+            }
+            catch (FormatException)
+            {
+                throw new LineBotException(createUsageMessage);
+            }
+            reservation.PhoneNumber = items[5];
+            reservation.Email = items[6];
+
+            // 予約を登録
+            context.Add(reservation);
+            await context.SaveChangesAsync();
+
+            // 通知
+            var stage = context.Stages.AsNoTracking()
+                .FirstOrDefault(s => s.DramaName == drama.Name && s.Num == reservation.StageNum);
+            UpdateCount(stage, drama.IsShinkan, context);
+            var to = context.NotifiedMemberIds.AsNoTracking().Select(m => m.Id).ToArray();
+            string message = $"予約が追加されました: {drama.Name}" + rt;
+            message = message + $"{reservation.StageNum}st" + rt;
+            message = message + $"{reservation.NumOfGuests + reservation.NumOfFreshmen + reservation.NumOfOthers}人" + rt;
+            message = message + $"{reservation.StageNum}st: {stage.CountOfGuests}人 / {stage.Max}人";
+            await SendMessage(message, to);
+
+            // リターンする文字列を作成
+            var ret = "予約を登録しました" + rt + rt;
+            ret = ret + "公演名: " + reservation.DramaName + rt;
+            ret = ret + "名前: " + reservation.GuestName + rt;
+            ret = ret + "ステージ: " + reservation.StageNum + "st" + rt;
+            if (drama.IsShinkan)
+            {
+                ret = ret + "新入生: " + reservation.NumOfFreshmen.ToString() + "人" + rt;
+                ret = ret + "新入生以外: " + reservation.NumOfOthers.ToString() + "人" + rt;
+            }
+            else
+            {
+                ret = ret + "人数: " + reservation.NumOfGuests.ToString() + "人" + rt;
+            }
+            ret = ret + "予約ID: " + reservation.Id.ToString();
+
+            return ret;
+        }
+
         public async static Task<string> Get(TicketContext context, string[] items, string userId)
         {
             if (items.Length < 2)

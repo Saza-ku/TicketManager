@@ -231,6 +231,8 @@ namespace TicketManager.Controllers
                 csv.WriteField($"{r.NumOfGuests}");
             }
             csv.WriteField($"{r.MemberName}");
+            csv.WriteField($"{r.Email}");
+            csv.WriteField($"{r.PhoneNumber}");
             csv.NextRecord();
         }
 
