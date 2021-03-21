@@ -1,52 +1,28 @@
 ﻿<Properties StartupConfiguration="{743109DF-7451-4BF0-8DD3-6BD1CDDFF260}|Default">
   <MonoDevelop.Ide.ItemProperties.TicketManager PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TicketManager/Controllers/UsageController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TicketManager/Migrations/20210321121248_AddTwoColomnsInMemberReservations.Designer.cs">
     <Files>
-      <File FileName="TicketManager/Data/TicketContext.cs" Line="14" Column="46" />
-      <File FileName="TicketManager/LineBotApi/LineBotUtil.cs" Line="208" Column="29" />
-      <File FileName="TicketManager/LineBotApi/LineBot.cs" Line="39" Column="91" />
-      <File FileName="TicketManager/LineBotApi/Models/LineTextMessage.cs" />
-      <File FileName="TicketManager/LineBotApi/Models/LineTextReply.cs" />
-      <File FileName="TicketManager/Controllers/OutsideReservationController.cs" />
-      <File FileName="TicketManager/Controllers/MemberReservationController.cs" />
-      <File FileName="TicketManager/Models/Stage.cs" />
-      <File FileName="TicketManager/LineBotApi/Models/Message.cs" />
-      <File FileName="TicketManager/Controllers/StageController.cs" />
-      <File FileName="TicketManager/Controllers/DramaController.cs" Line="119" Column="85" />
-      <File FileName="TicketManager/Models/Drama.cs" />
-      <File FileName="TicketManager/Controllers/IdentityController.cs" />
-      <File FileName="TicketManager/Models/IdInputModel.cs" />
-      <File FileName="TicketManager/Views/Identity/Login.cshtml" />
-      <File FileName="TicketManager/Models/NotifiedMember.cs" />
-      <File FileName="TicketManager/Migrations/AppContextModelSnapshot.cs" />
-      <File FileName="TicketManager/Migrations/20210217135315_InitialCreate.cs" />
-      <File FileName="TicketManager/LineBotApi/LineBotException.cs" />
-      <File FileName="TicketManager/Migrations/TicketContextModelSnapshot.cs" />
-      <File FileName="TicketManager/Models/CreateDramaModel.cs" />
-      <File FileName="TicketManager/Models/EditStagesModel.cs" />
-      <File FileName="TicketManager/Models/ErrorViewModel.cs" />
-      <File FileName="TicketManager/Models/MemberReservation.cs" />
-      <File FileName="TicketManager/Models/OutsideReservation.cs" />
-      <File FileName="TicketManager/Models/StageViewModel.cs" />
-      <File FileName="TicketManager/Views/Stage/Index.cshtml" />
-      <File FileName="TicketManager/Views/Drama/Index.cshtml" />
-      <File FileName="TicketManager/Views/MemberReservation/Edit.cshtml" />
-      <File FileName="TicketManager/Views/Shared/_Layout.cshtml" />
-      <File FileName="TicketManager/Views/Shared/_LoginPartial.cshtml" />
-      <File FileName="TicketManager/Views/OutsideReservation/Create.cshtml" />
-      <File FileName="TicketManager/Views/Home/Index.cshtml" />
+      <File FileName="TicketManager/Views/Home/Index.cshtml" Line="10" Column="53" />
       <File FileName="TicketManager/Views/Drama/Create.cshtml" />
       <File FileName="TicketManager/Startup.cs" />
-      <File FileName="TicketManager/Program.cs" />
+      <File FileName="TicketManager/Program.cs" Line="20" Column="24" />
       <File FileName="heroku.yml" />
-      <File FileName="TicketManager/Controllers/LineBotController.cs" Line="42" Column="74" />
+      <File FileName="TicketManager/Controllers/LineBotController.cs" />
       <File FileName="TicketManager/Data/DbInitializer.cs" />
       <File FileName="TicketManager/LineBotApi/Models/MessageEvent.cs" />
       <File FileName="TicketManager/LineBotApi/Models/Source.cs" />
       <File FileName="TicketManager/LineBotApi/Models/LineWebhookObject.cs" />
-      <File FileName="TicketManager/LineBotApi/Models/LineUserProfile.cs" Line="8" Column="32" />
-      <File FileName="TicketManager/Views/Usage/Bot.cshtml" Line="435" Column="1" />
-      <File FileName="TicketManager/Controllers/UsageController.cs" Line="14" Column="33" />
+      <File FileName="TicketManager/LineBotApi/Models/LineUserProfile.cs" />
+      <File FileName="TicketManager/Views/Usage/Bot.cshtml" />
+      <File FileName="TicketManager/Controllers/UsageController.cs" />
+      <File FileName="TicketManager/Models/MemberReservation.cs" Line="38" Column="48" />
+      <File FileName="TicketManager/Migrations/20210217135315_InitialCreate.cs" Line="1" Column="1" />
+      <File FileName="TicketManager/Controllers/MemberReservationController.cs" Line="1" Column="1" />
+      <File FileName="TicketManager/Views/Stage/Index.cshtml" Line="63" Column="38" />
+      <File FileName="TicketManager/LineBotApi/LineBotUtil.cs" Line="178" Column="42" />
+      <File FileName="TicketManager/Controllers/StageController.cs" Line="234" Column="42" />
+      <File FileName="TicketManager/Migrations/20210321121248_AddTwoColomnsInMemberReservations.cs" Line="1" Column="1" />
+      <File FileName="TicketManager/Migrations/20210321121248_AddTwoColomnsInMemberReservations.Designer.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -54,11 +30,15 @@
           <Node name="TicketManager" expanded="True">
             <Node name="Solution Items" expanded="True" />
             <Node name="TicketManager" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="UsageController.cs" selected="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Migrations" expanded="True">
+                <Node name="20210321121248_AddTwoColomnsInMemberReservations.cs" expanded="True">
+                  <Node name="20210321121248_AddTwoColomnsInMemberReservations.Designer.cs" selected="True" />
+                </Node>
               </Node>
-              <Node name="LineBotApi" expanded="True" />
-              <Node name="Views" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Stage" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>
