@@ -6,6 +6,5 @@ public class DbInitializer
     {
         // これね
         context.Database.EnsureDeleted();
-        context.Database.EnsureCreated();
     }
 }
