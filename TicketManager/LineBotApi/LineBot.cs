@@ -66,7 +66,7 @@ namespace TicketManager.LineBotApi
             {
                 case "団員予約":
                 case "予約追加":
-                    message = await LineBotUtil.Add(context, items, userId);
+                    message = await LineBotUtil.AddInCorona(context, items, userId);
                     break;
                 case "予約一覧":
                 case "予約確認":

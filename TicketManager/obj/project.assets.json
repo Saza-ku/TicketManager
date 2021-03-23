@@ -6750,7 +6750,7 @@
       "outputPath": "/Users/soichiro/Projects/TicketManager/TicketManager/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/soichiro/.nuget/NuGet/NuGet.Config"
+        "/Users/soichiro/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -6831,7 +6831,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.103/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.201/RuntimeIdentifierGraph.json"
       }
     }
   }
