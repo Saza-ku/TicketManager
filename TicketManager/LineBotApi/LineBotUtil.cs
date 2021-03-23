@@ -27,7 +27,7 @@ namespace TicketManager.LineBotApi
             "5 行目: < ステージ番号 >（2st, 3st など）" + rt +
             "6 行目: < 人数 >（新歓公演の場合は、< 新入生の人数 >）" + rt +
             "7 行目: < 新入生以外の人数 >（新歓公演の場合のみ）";
-        private static readonly string createCoronaUsageMessage =
+        private static readonly string createInCoronaUsageMessage =
             "予約追加のメッセージフォーマットに従っていません。" + rt +
             "予約を追加するには、以下のフォーマットに従ってメッセージを送ります。" + rt +
             "1 行目: 予約追加（または、団員予約）" + rt +
@@ -182,7 +182,7 @@ namespace TicketManager.LineBotApi
             }
             catch (FormatException)
             {
-                throw new LineBotException(createUsageMessage);
+                throw new LineBotException(createInCoronaUsageMessage);
             }
             reservation.PhoneNumber = items[5];
             reservation.Email = items[6];

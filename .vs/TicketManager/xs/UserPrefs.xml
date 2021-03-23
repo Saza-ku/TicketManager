@@ -1,29 +1,13 @@
 ﻿<Properties StartupConfiguration="{743109DF-7451-4BF0-8DD3-6BD1CDDFF260}|Default">
   <MonoDevelop.Ide.ItemProperties.TicketManager PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TicketManager/Migrations/20210321131647_InitialCreate.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TicketManager/LineBotApi/LineBotUtil.cs">
     <Files>
-      <File FileName="TicketManager/Views/Home/Index.cshtml" Line="10" Column="53" />
-      <File FileName="TicketManager/Views/Drama/Create.cshtml" />
-      <File FileName="TicketManager/Startup.cs" />
-      <File FileName="TicketManager/Program.cs" />
-      <File FileName="heroku.yml" />
-      <File FileName="TicketManager/Controllers/LineBotController.cs" Line="1" Column="1" />
-      <File FileName="TicketManager/Data/DbInitializer.cs" Line="8" Column="42" />
-      <File FileName="TicketManager/LineBotApi/Models/MessageEvent.cs" />
-      <File FileName="TicketManager/LineBotApi/Models/Source.cs" />
-      <File FileName="TicketManager/LineBotApi/Models/LineWebhookObject.cs" />
-      <File FileName="TicketManager/LineBotApi/Models/LineUserProfile.cs" />
-      <File FileName="TicketManager/Views/Usage/Bot.cshtml" />
-      <File FileName="TicketManager/Controllers/UsageController.cs" />
-      <File FileName="TicketManager/Models/MemberReservation.cs" />
-      <File FileName="TicketManager/Controllers/MemberReservationController.cs" />
-      <File FileName="TicketManager/Views/Stage/Index.cshtml" />
-      <File FileName="TicketManager/LineBotApi/LineBotUtil.cs" Line="1" Column="1" />
-      <File FileName="TicketManager/Controllers/StageController.cs" />
+      <File FileName="TicketManager/Controllers/StageController.cs" Line="1" Column="1" />
       <File FileName="TicketManager/Dockerfile" />
-      <File FileName="TicketManager/LineBotApi/Models/LineTextMessage.cs" Line="1" Column="1" />
+      <File FileName="TicketManager/LineBotApi/Models/LineTextMessage.cs" />
       <File FileName="TicketManager/LineBotApi/LineBot.cs" Line="69" Column="60" />
-      <File FileName="TicketManager/Migrations/20210321131647_InitialCreate.cs" Line="1" Column="1" />
+      <File FileName="TicketManager/Migrations/20210321131647_InitialCreate.cs" />
+      <File FileName="TicketManager/LineBotApi/LineBotUtil.cs" Line="30" Column="54" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -33,10 +17,7 @@
               <Node name="Controllers" expanded="True" />
               <Node name="Data" expanded="True" />
               <Node name="LineBotApi" expanded="True">
-                <Node name="Models" expanded="True" />
-              </Node>
-              <Node name="Migrations" expanded="True">
-                <Node name="20210321131647_InitialCreate.cs" selected="True" />
+                <Node name="LineBotUtil.cs" selected="True" />
               </Node>
             </Node>
           </Node>
