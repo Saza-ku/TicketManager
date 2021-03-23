@@ -27,6 +27,16 @@ namespace TicketManager.LineBotApi
             "5 行目: < ステージ番号 >（2st, 3st など）" + rt +
             "6 行目: < 人数 >（新歓公演の場合は、< 新入生の人数 >）" + rt +
             "7 行目: < 新入生以外の人数 >（新歓公演の場合のみ）";
+        private static readonly string createCoronaUsageMessage =
+            "予約追加のメッセージフォーマットに従っていません。" + rt +
+            "予約を追加するには、以下のフォーマットに従ってメッセージを送ります。" + rt +
+            "1 行目: 予約追加（または、団員予約）" + rt +
+            "2 行目: < 公演名 >（制作チーフに聞いてください）" + rt +
+            "3 行目: < 氏名 >" + rt +
+            "4 行目: < フリガナ > " + rt +
+            "5 行目: < ステージ番号 >（2st, 3st など）" + rt +
+            "6 行目: < 電話番号 >" + rt +
+            "7 行目: < メールアドレス >（新歓公演の場合のみ）";
         private static readonly string readUsageMessage =
             "予約確認のメッセージフォーマットに従っていません。" + rt +
             "予約を確認するには、以下のフォーマットに従ってメッセージを送ります。" + rt +
@@ -197,15 +207,8 @@ namespace TicketManager.LineBotApi
             ret = ret + "公演名: " + reservation.DramaName + rt;
             ret = ret + "名前: " + reservation.GuestName + rt;
             ret = ret + "ステージ: " + reservation.StageNum + "st" + rt;
-            if (drama.IsShinkan)
-            {
-                ret = ret + "新入生: " + reservation.NumOfFreshmen.ToString() + "人" + rt;
-                ret = ret + "新入生以外: " + reservation.NumOfOthers.ToString() + "人" + rt;
-            }
-            else
-            {
-                ret = ret + "人数: " + reservation.NumOfGuests.ToString() + "人" + rt;
-            }
+            ret = ret + "電話番号: " + reservation.PhoneNumber + rt;
+            ret = ret + "メールアドレス: " + reservation.Email + rt;
             ret = ret + "予約ID: " + reservation.Id.ToString();
 
             return ret;
