@@ -154,7 +154,7 @@ namespace TicketManager.LineBotApi
         {
             if (items.Length < 2)
             {
-                throw new LineBotException(createUsageMessage);
+                throw new LineBotException(createInCoronaUsageMessage);
             }
             var drama = context.Dramas.FirstOrDefault(d => d.Name == items[1]);
             if (drama == null)
@@ -164,7 +164,7 @@ namespace TicketManager.LineBotApi
             int itemCount = 7;
             if (items.Length != itemCount)
             {
-                throw new LineBotException(createUsageMessage);
+                throw new LineBotException(createInCoronaUsageMessage);
             }
 
 
