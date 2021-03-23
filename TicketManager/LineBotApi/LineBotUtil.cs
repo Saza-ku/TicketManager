@@ -186,6 +186,7 @@ namespace TicketManager.LineBotApi
             }
             reservation.PhoneNumber = items[5];
             reservation.Email = items[6];
+            reservation.NumOfGuests = 1;
 
             // 予約を登録
             context.Add(reservation);
