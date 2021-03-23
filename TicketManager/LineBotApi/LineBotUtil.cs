@@ -36,7 +36,7 @@ namespace TicketManager.LineBotApi
             "4 行目: < フリガナ > " + rt +
             "5 行目: < ステージ番号 >（2st, 3st など）" + rt +
             "6 行目: < 電話番号 >" + rt +
-            "7 行目: < メールアドレス >（新歓公演の場合のみ）";
+            "7 行目: < メールアドレス >";
         private static readonly string readUsageMessage =
             "予約確認のメッセージフォーマットに従っていません。" + rt +
             "予約を確認するには、以下のフォーマットに従ってメッセージを送ります。" + rt +
