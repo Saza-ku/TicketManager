@@ -27,13 +27,6 @@ namespace TicketManager.Controllers
 
         public IActionResult Index()
         {
-            var stages = context.Stages.ToArray();
-            foreach (Stage s in stages)
-            {
-                logger.LogInformation($"公演名: {s.DramaName}, 日時: {s.Time}"
-                    );
-            }
-
             var Dramas = context.Dramas.AsNoTracking()
                 .Where(d => d.UserId == userManager.GetUserId(User))
                 .ToArray();
