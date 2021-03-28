@@ -161,18 +161,29 @@ namespace TicketManager.Controllers
             // 項目ごとに分ける
             string[] items = input.Split("\t");
 
+            logger.LogInformation("一括予約を行います\n" +
+                $"公演名: {dramaName}" +
+                $"文字列: {input}");
+
             // 一列ずらす（新歓かどうかの分岐のため）
             items[8] = items[7];
             items[7] = items[6];
             items[6] = items[5];
+
+            var stage = context.Stages
+                .FirstOrDefault(s => s.DramaName == dramaName && s.Time == items[3]);
+
+            if(stage == null)
+            {
+                logger.LogError($"ステージが見つかりません: 公演名={dramaName}, 日時: {items[3]}");
+            }
 
             // 作る 
             OutsideReservation reservation = new OutsideReservation();
             reservation.Time = items[0];
             reservation.GuestName = items[1];
             reservation.Furigana = items[2];
-            reservation.StageNum = context.Stages
-                .FirstOrDefault(s => s.DramaName == dramaName && s.Time == items[3]).Num;
+            reservation.StageNum = stage.Num;
             if (items[5].Contains("名"))
             {
                 reservation.NumOfFreshmen = int.Parse(items[4].Replace("名", ""));
