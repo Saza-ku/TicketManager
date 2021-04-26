@@ -14,3 +14,15 @@
         <input formmethod="post" type="submit" value="Create" class="btn btn-primary" />
     </div>
 </form>
+
+<form enctype="multipart/form-data" method="post" asp-action="CreateRange">
+    <dl>
+        <dt>
+            CSV ファイル
+        </dt>
+        <dd>
+            <input type="file">
+        </dd>
+    </dl>
+    <input asp-page-handler="Upload" class="btn" type="submit" value="Upload" disabled="disabled"/>
+</form>
