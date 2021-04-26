@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.VisualBasic.FileIO;
 using TicketManager.Data;
 using TicketManager.Models;
 
@@ -20,6 +24,7 @@ namespace TicketManager.Controllers
         public TicketContext context;
         private readonly ILogger<OutsideReservationController> logger;
         private readonly UserManager<IdentityUser> userManager;
+        private readonly Encoding shiftJis;
 
         public OutsideReservationController(TicketContext _context,
             ILogger<OutsideReservationController> _logger,
@@ -28,6 +33,10 @@ namespace TicketManager.Controllers
             context = _context;
             logger = _logger;
             userManager = _userManager;
+
+            // shift_jis を追加
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            shiftJis = Encoding.GetEncoding("Shift_JIS");
         }
 
         [HttpGet]
@@ -105,7 +114,7 @@ namespace TicketManager.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateRange(string id, [FromForm] string input)
+        public IActionResult CreateRange(string id, [FromForm] IFormFile file)
         {
             var drama = context.Dramas.AsNoTracking()
                 .FirstOrDefault(d => d.Name == id);
@@ -115,7 +124,44 @@ namespace TicketManager.Controllers
                 return NotFound($"{id}という公演は存在しません");
             }
 
-            var newReservations = ParseInput(input, id);
+            // 入力をパースして予約情報を取得
+            var newReservations = new List<OutsideReservation>();
+            using (var stream = file.OpenReadStream())
+            using (var parser = new TextFieldParser(stream, shiftJis))
+            {
+                // カンマ区切りの指定
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+                // フィールドが引用符で囲まれているか
+                parser.HasFieldsEnclosedInQuotes = true;
+                // フィールドの空白トリム設定
+                parser.TrimWhiteSpace = false;
+
+                bool first = true;
+
+                // ファイルの終端までループ
+                while (!parser.EndOfData)
+                {
+                    // フィールドを読込
+                    string[] row = parser.ReadFields();
+                    if(first)
+                    {
+                        first = false;
+                        continue;
+                    }
+                    OutsideReservation r;
+                    try
+                    {
+                        r = CreateFromRow(row, drama.Name);
+                    }
+                    catch (NullReferenceException e)
+                    {
+                        return NotFound(e.Message);
+                    }
+                    newReservations.Add(r);
+                }
+            }
+
             foreach (OutsideReservation reservation in newReservations)
             {
                 bool registerd = context.OutsideReservations.AsNoTracking()
@@ -143,27 +189,11 @@ namespace TicketManager.Controllers
             return Redirect(path);
         }
 
-        private List<OutsideReservation> ParseInput(string input, string dramaName)
+        private OutsideReservation CreateFromRow(string[] items, string dramaName)
         {
-            string rt = Environment.NewLine;
-            string[] lines = input.Split(rt);
-            List<OutsideReservation> ret = new List<OutsideReservation>();
-            for (int i = 1; i < lines.Length; i++)
-            {
-                ret.Add(CreateFromOneLine(lines[i], dramaName));
-            }
-
-            return ret;
-        }
-
-        private OutsideReservation CreateFromOneLine(string input, string dramaName)
-        {
-            // 項目ごとに分ける
-            string[] items = input.Split("\t");
-
             logger.LogInformation("一括予約を行います\n" +
                 $"公演名: {dramaName}" +
-                $"文字列: {input}");
+                $"情報: {string.Join(",", items)}");
 
             // 一列ずらす（新歓かどうかの分岐のため）
             items[8] = items[7];
@@ -173,9 +203,10 @@ namespace TicketManager.Controllers
             var stage = context.Stages
                 .FirstOrDefault(s => s.DramaName == dramaName && s.Time == items[3]);
 
-            if(stage == null)
+            if (stage == null)
             {
                 logger.LogError($"ステージが見つかりません: 公演名={dramaName}, 日時: {items[3]}");
+                throw new NullReferenceException($"ステージが見つかりません: 公演名 ={ dramaName }, 日時: { items[3]}");
             }
 
             // 作る 

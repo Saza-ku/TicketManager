@@ -6,11 +6,17 @@
 
 <h1>一般予約一括登録</h1>
 <h2>@dramaName</h2>
-<form asp-action="CreateRange">
-    <div class="form-group">
-        <textarea class="form-control" name="input"></textarea>
-    </div>
-    <div class="form-group">
-        <input formmethod="post" type="submit" value="Create" class="btn btn-primary" />
-    </div>
+
+<p>フォームメーラーからダウンロードした CSV ファイルをそのままアップロードしてください。</p>
+
+<form enctype="multipart/form-data" method="post" asp-action="CreateRange">
+    <dl>
+        <dt>
+            CSV ファイル
+        </dt>
+        <dd>
+            <input type="file" name="file">
+        </dd>
+    </dl>
+    <input formmethod="post" type="submit" value="一括登録" class="btn btn-primary" />
 </form>
