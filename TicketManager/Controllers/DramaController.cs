@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using CsvHelper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -26,6 +27,9 @@ namespace TicketManager.Controllers
             logger = _logger;
             context = _context;
             userManager = _userManager;
+
+            // shift_jis を追加
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
 
         [HttpGet]
@@ -180,7 +184,7 @@ namespace TicketManager.Controllers
 
             // メモリを確保する
             using (var memory = new MemoryStream())
-            using (var writer = new StreamWriter(memory))
+            using (var writer = new StreamWriter(memory, Encoding.GetEncoding("Shift_JIS")))
             using (var csv = new CsvWriter(writer, new CultureInfo(0x0411, false)))
             {
                 var memberReservations = context.MemberReservations

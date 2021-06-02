@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TicketManager\TicketManager.csproj = TicketManager\TicketManager.csproj
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketManager", "TicketManager\TicketManager.csproj", "{F733DCC3-A519-42FA-8639-EE07C970BCEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketManager", "TicketManager\TicketManager.csproj", "{3DB9341A-90F0-4363-AB24-5F3950FB3FAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F733DCC3-A519-42FA-8639-EE07C970BCEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F733DCC3-A519-42FA-8639-EE07C970BCEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F733DCC3-A519-42FA-8639-EE07C970BCEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F733DCC3-A519-42FA-8639-EE07C970BCEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DB9341A-90F0-4363-AB24-5F3950FB3FAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DB9341A-90F0-4363-AB24-5F3950FB3FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DB9341A-90F0-4363-AB24-5F3950FB3FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DB9341A-90F0-4363-AB24-5F3950FB3FAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -29,6 +29,6 @@ Global
 		SolutionGuid = {B334587B-D1DE-4D4D-98A4-8169E366510A}
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{F733DCC3-A519-42FA-8639-EE07C970BCEE} = {FFCD78DB-D060-4BCA-A02D-E830DAA84A83}
+		{3DB9341A-90F0-4363-AB24-5F3950FB3FAD} = {FFCD78DB-D060-4BCA-A02D-E830DAA84A83}
 	EndGlobalSection
 EndGlobal
