@@ -20,6 +20,6 @@ namespace TicketManager.Models
         [NotMapped]
         public int CountOfGuests { get; set; }
 
-        public Drama Drama { get; set; }
+        public DramaModel Drama { get; set; }
     }
 }

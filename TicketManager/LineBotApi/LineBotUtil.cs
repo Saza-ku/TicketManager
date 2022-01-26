@@ -88,7 +88,7 @@ namespace TicketManager.LineBotApi
             
 
             // 予約を作成
-            MemberReservation reservation = new MemberReservation();
+            MemberResercationModel reservation = new MemberResercationModel();
             reservation.MemberId = userId;
             // コマンド, 公演名, 名前, ふりがな, st, 人数(新入生, それ以外) 
             reservation.DramaName = items[1];
@@ -169,7 +169,7 @@ namespace TicketManager.LineBotApi
 
 
             // 予約を作成
-            MemberReservation reservation = new MemberReservation();
+            MemberResercationModel reservation = new MemberResercationModel();
             reservation.MemberId = userId;
             // コマンド, 公演名, 名前, ふりがな, st, 電話番号, メールアドレス
             reservation.DramaName = items[1];
@@ -234,7 +234,7 @@ namespace TicketManager.LineBotApi
 
             // リターンする文字列を作成
             var ret = $"登録した予約一覧: {items[1]}";
-            foreach (MemberReservation reservation in reservations)
+            foreach (MemberResercationModel reservation in reservations)
             {
                 ret = ret + rt + rt;
                 ret = ret + "名前: " + reservation.GuestName + rt;
@@ -445,7 +445,7 @@ namespace TicketManager.LineBotApi
             int count = 0;
             if (isShinkan)
             {
-                foreach (MemberReservation r in memberReservations)
+                foreach (MemberResercationModel r in memberReservations)
                 {
                     count += r.NumOfFreshmen + r.NumOfOthers;
                 }
