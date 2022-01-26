@@ -46,32 +46,7 @@ namespace TicketManager.Controllers
             var model = context.Stages.Where(s => s.DramaName == id).ToArray();
             foreach(Stage stage in model)
             {
-                var memberReservations = context.MemberReservations
-                    .Where(r => r.DramaName == id && r.StageNum == stage.Num)
-                    .ToArray();
-                var outsideReservations = context.OutsideReservations
-                    .Where(r => r.DramaName == id && r.StageNum == stage.Num)
-                    .ToArray();
-
-                int count = 0;
-                if (drama.IsShinkan)
-                {
-                    foreach (MemberReservation r in memberReservations)
-                    {
-                        count += r.NumOfFreshmen + r.NumOfOthers;
-                    }
-                    foreach (OutsideReservation r in outsideReservations)
-                    {
-                        count += r.NumOfFreshmen + r.NumOfOthers;
-                    }
-                }
-                else
-                {
-                    count += memberReservations.Select(r => r.NumOfGuests).Sum();
-                    count += outsideReservations.Select(r => r.NumOfGuests).Sum();
-                }
-
-                stage.CountOfGuests = count;
+                stage.CountGuests(context);
             }
             return View(model);
         }

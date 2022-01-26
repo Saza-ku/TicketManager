@@ -398,6 +398,21 @@ namespace TicketManager.LineBotApi
             await context.SaveChangesAsync();
         }
 
+        public async static string GetRemainingSeats(TicketContext context, string[] items)
+        {
+            string message = "残席一覧";
+
+            var stages = context.Stages
+                .AsNoTracking()
+                .FirstOrDefault(s => s.DramaName == items[1]);
+            context.MemberReservations
+                .AsNoTracking()
+                .Where(r => r.DramaName == drama.Name);
+            context.OutsideReservations
+                .AsNoTracking()
+                .Where(r => r.DramaName == drama.Name);
+        }
+
         private async static Task SendMessage(string text, string[] to)
         {
             if (to.Length == 0) return;
