@@ -85,7 +85,6 @@ namespace TicketManager.LineBotApi
                 throw new LineBotException(createUsageMessage);
             }
 
-
             // 予約を作成
             MemberReservation reservation = new MemberReservation();
             reservation.MemberId = userId;
@@ -115,13 +114,24 @@ namespace TicketManager.LineBotApi
                 throw new LineBotException(createUsageMessage);
             }
 
+
+            var stage = context.Stages.
+                FirstOrDefault(s => s.DramaName == drama.Name && s.Num == reservation.StageNum);
+            if (stage == null)
+            {
+                throw new LineBotException($"{drama.Name}に{reservation.StageNum}stはありません");
+            }
+            stage.CountGuests(context);
+            if (stage.CountOfGuests <= 0)
+            {
+                throw new LineBotException($"{drama.Name}の{reservation.StageNum}stはすでに満席です");
+            }
+
             // 予約を登録
             context.Add(reservation);
             await context.SaveChangesAsync();
 
             // 通知
-            var stage = context.Stages.AsNoTracking()
-                .FirstOrDefault(s => s.DramaName == drama.Name && s.Num == reservation.StageNum);
             UpdateCount(stage, drama.IsShinkan, context);
             var to = context.NotifiedMemberIds.AsNoTracking().Select(m => m.Id).ToArray();
             string message = $"予約が追加されました: {drama.Name}" + rt;
