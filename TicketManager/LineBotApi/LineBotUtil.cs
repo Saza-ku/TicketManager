@@ -122,7 +122,7 @@ namespace TicketManager.LineBotApi
                 throw new LineBotException($"{drama.Name}に{reservation.StageNum}stはありません");
             }
             stage.CountGuests(context);
-            if (stage.CountOfGuests <= 0)
+            if (stage.RemainingSeats <= 0)
             {
                 throw new LineBotException($"{drama.Name}の{reservation.StageNum}stはすでに満席です");
             }
