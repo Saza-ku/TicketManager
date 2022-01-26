@@ -20,10 +20,47 @@ namespace TicketManager.Models
         [ForeignKey("Drama")]
         public string DramaName { get; set; }
 
+        public Drama Drama { get; set; }
+
         [NotMapped]
         public int CountOfGuests { get; set; }
 
-        public Drama Drama { get; set; }
+        [NotMapped]
+        public int RemainingSeats
+        {
+            get
+            {
+                return Max - CountOfGuests;
+            }
+        }
+
+        [NotMapped]
+        public string StatusOfRemainingSeats
+        {
+            get
+            {
+                if (RemainingSeats > 10)
+                {
+                    return "◎";
+                }
+                else if (RemainingSeats > 7)
+                {
+                    return "◯";
+                }
+                else if (RemainingSeats > 3)
+                {
+                    return "△";
+                }
+                else if (RemainingSeats > 0)
+                {
+                    return "▲";
+                }
+                else
+                {
+                    return "×";
+                }
+            }
+        }
 
         public void CountGuests(TicketContext context)
         {
