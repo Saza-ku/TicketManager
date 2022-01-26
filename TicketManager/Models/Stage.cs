@@ -1,6 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using TicketManager.Data;
 
 namespace TicketManager.Models
 {
@@ -17,9 +20,79 @@ namespace TicketManager.Models
         [ForeignKey("Drama")]
         public string DramaName { get; set; }
 
+        public Drama Drama { get; set; }
+
         [NotMapped]
         public int CountOfGuests { get; set; }
 
-        public Drama Drama { get; set; }
+        [NotMapped]
+        public int RemainingSeats
+        {
+            get
+            {
+                return Max - CountOfGuests;
+            }
+        }
+
+        [NotMapped]
+        public string StatusOfRemainingSeats
+        {
+            get
+            {
+                if (RemainingSeats > 10)
+                {
+                    return "◎";
+                }
+                else if (RemainingSeats > 7)
+                {
+                    return "◯";
+                }
+                else if (RemainingSeats > 3)
+                {
+                    return "△";
+                }
+                else if (RemainingSeats > 0)
+                {
+                    return "▲";
+                }
+                else
+                {
+                    return "×";
+                }
+            }
+        }
+
+        public void CountGuests(TicketContext context)
+        {
+            var drama = context.Dramas
+                .AsNoTracking().
+                FirstOrDefault(d => d.Name == DramaName);
+            var memberReservations = context.MemberReservations
+                    .Where(r => r.DramaName == DramaName && r.StageNum == Num)
+                    .ToArray();
+            var outsideReservations = context.OutsideReservations
+                .Where(r => r.DramaName == DramaName && r.StageNum == Num)
+                .ToArray();
+
+            int count = 0;
+            if (drama.IsShinkan)
+            {
+                foreach (MemberReservation r in memberReservations)
+                {
+                    count += r.NumOfFreshmen + r.NumOfOthers;
+                }
+                foreach (OutsideReservation r in outsideReservations)
+                {
+                    count += r.NumOfFreshmen + r.NumOfOthers;
+                }
+            }
+            else
+            {
+                count += memberReservations.Select(r => r.NumOfGuests).Sum();
+                count += outsideReservations.Select(r => r.NumOfGuests).Sum();
+            }
+
+            CountOfGuests = count;
+        }
     }
 }

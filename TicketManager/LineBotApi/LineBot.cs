@@ -88,6 +88,10 @@ namespace TicketManager.LineBotApi
                     await LineBotUtil.Unregister(context, userId);
                     message = "登録解除";
                     break;
+                case "残席確認":
+                case "残席一覧":
+                    message = LineBotUtil.GetRemainingSeats(context, items);
+                    break;
                 case "起きてる？":
                 case "おきてる？":
                 case "起きてる":
