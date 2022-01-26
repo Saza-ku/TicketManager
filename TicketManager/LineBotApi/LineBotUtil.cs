@@ -504,5 +504,4 @@ namespace TicketManager.LineBotApi
             var profile = JsonConvert.DeserializeObject<LineUserProfile>(body);
             return profile.displayName;
         }
-    }
 }
