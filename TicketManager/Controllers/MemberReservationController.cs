@@ -49,7 +49,7 @@ namespace TicketManager.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(string id, MemberReservation reservation)
+        public IActionResult Create(string id, MemberResercationModel reservation)
         {
             var drama = context.Dramas.AsNoTracking()
                 .FirstOrDefault(d => d.Name == id);
@@ -113,7 +113,7 @@ namespace TicketManager.Controllers
 
         [HttpPost]
         public IActionResult Edit(string id, [FromQuery] int reservationId,
-            [ModelBinder] MemberReservation input)
+            [ModelBinder] MemberResercationModel input)
         {
             var drama = context.Dramas.AsNoTracking()
                 .FirstOrDefault(d => d.Name == id);

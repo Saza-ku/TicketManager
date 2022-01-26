@@ -8,9 +8,9 @@ namespace TicketManager.Data
 {
     public class TicketContext : IdentityDbContext
     {
-        public DbSet<Drama> Dramas { get; set; }
+        public DbSet<DramaModel> Dramas { get; set; }
         public DbSet<Stage> Stages { get; set; }
-        public DbSet<MemberReservation> MemberReservations { get; set; }
+        public DbSet<MemberResercationModel> MemberReservations { get; set; }
         public DbSet<OutsideReservation> OutsideReservations { get; set; }
         public DbSet<NotifiedMember> NotifiedMemberIds { get; set; }
 

@@ -67,7 +67,7 @@ namespace TicketManager.Controllers
             int count = 0;
             if (drama.IsShinkan)
             {
-                foreach (MemberReservation r in memberReservations)
+                foreach (MemberResercationModel r in memberReservations)
                 {
                     count += r.NumOfFreshmen + r.NumOfOthers;
                 }
@@ -204,7 +204,7 @@ namespace TicketManager.Controllers
                 csv.WriteField("連絡先");
                 csv.WriteField("備考");
                 csv.NextRecord();
-                foreach (MemberReservation r in memberReservations)
+                foreach (MemberResercationModel r in memberReservations)
                 {
                     WriteMemberReservation(r, drama.IsShinkan, csv);
                 }
@@ -221,7 +221,7 @@ namespace TicketManager.Controllers
             }
         }
 
-        private void WriteMemberReservation(MemberReservation r, bool isShinkan, CsvWriter csv)
+        private void WriteMemberReservation(MemberResercationModel r, bool isShinkan, CsvWriter csv)
         {
             csv.WriteField($"{r.GuestName}");
             csv.WriteField($"{r.Furigana}");
