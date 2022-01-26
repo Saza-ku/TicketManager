@@ -84,7 +84,7 @@ namespace TicketManager.LineBotApi
             {
                 throw new LineBotException(createUsageMessage);
             }
-            
+
 
             // 予約を作成
             MemberReservation reservation = new MemberReservation();
@@ -460,13 +460,13 @@ namespace TicketManager.LineBotApi
             }
         }
 
-        private static void UpdateCount(Stage stage, bool isShinkan,TicketContext context)
+        private static void UpdateCount(Stage stage, bool isShinkan, TicketContext context)
         {
             var memberReservations = context.MemberReservations
                     .Where(r => r.DramaName == stage.DramaName && r.StageNum == stage.Num)
                     .ToArray();
             var outsideReservations = context.OutsideReservations
-                .Where(r => r.DramaName == stage.DramaName&& r.StageNum == stage.Num)
+                .Where(r => r.DramaName == stage.DramaName && r.StageNum == stage.Num)
                 .ToArray();
             int count = 0;
             if (isShinkan)
@@ -504,4 +504,5 @@ namespace TicketManager.LineBotApi
             var profile = JsonConvert.DeserializeObject<LineUserProfile>(body);
             return profile.displayName;
         }
+    }
 }
