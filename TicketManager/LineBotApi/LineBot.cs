@@ -108,12 +108,9 @@ http://ticket-manager-saza.herokuapp.com/Usage/Bot";
                 case "おきてる":
                     message = "起きてるよー！";
                     break;
-                case "使用方法":
-                    message = "http://ticket-manager-saza.herokuapp.com/Usage/Bot";
-                    break;
                 default:
                     message = usage;
-                    return;
+                    break;
             }
 
             await SendTextReplyAsync(replyToken, message);
