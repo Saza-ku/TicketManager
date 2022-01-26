@@ -1,0 +1,9 @@
+version: "3"
+services:
+  app:
+    build: .
+    container_name: "csharp-dotnet-server-docker"
+    ports:
+      - 80:5000
+    volumes:
+      - .:/app
