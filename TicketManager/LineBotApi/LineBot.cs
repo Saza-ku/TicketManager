@@ -20,6 +20,16 @@ namespace TicketManager.LineBotApi
         private readonly TicketContext context;
         private readonly string rt;
 
+        private readonly string usage = @"コマンド一覧:
+予約追加
+予約確認
+予約変更
+予約消去
+残席確認
+
+詳細な使用方法は以下のページをご覧ください。
+http://ticket-manager-saza.herokuapp.com/Usage/Bot";
+
         public LineBot(string accessToken, TicketContext _context ,ILogger<LineBotController> _logger)
         {
             AccessToken = accessToken;
@@ -99,9 +109,10 @@ namespace TicketManager.LineBotApi
                     message = "起きてるよー！";
                     break;
                 case "使用方法":
-                    message = "http://ticket-manager-2021-saza.herokuapp.com/Usage/Bot";
+                    message = "http://ticket-manager-saza.herokuapp.com/Usage/Bot";
                     break;
                 default:
+                    message = usage;
                     return;
             }
 
