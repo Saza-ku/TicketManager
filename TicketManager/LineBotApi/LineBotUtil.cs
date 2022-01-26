@@ -18,8 +18,7 @@ namespace TicketManager.LineBotApi
         private static readonly string rt = Environment.NewLine;
 
         private static readonly string createUsageMessage =
-            "予約追加のメッセージフォーマットに従っていません。" + rt +
-            "予約を追加するには、以下のフォーマットに従ってメッセージを送ります。" + rt +
+            "予約を追加するには、以下のフォーマットに従ってメッセージを送ります。" + rt + rt +
             "1 行目: 予約追加（または、団員予約）" + rt +
             "2 行目: < 公演名 >（制作チーフに聞いてください）" + rt +
             "3 行目: < 氏名 >" + rt +
@@ -28,8 +27,7 @@ namespace TicketManager.LineBotApi
             "6 行目: < 人数 >（新歓公演の場合は、< 新入生の人数 >）" + rt +
             "7 行目: < 新入生以外の人数 >（新歓公演の場合のみ）";
         private static readonly string createInCoronaUsageMessage =
-            "予約追加のメッセージフォーマットに従っていません。" + rt +
-            "予約を追加するには、以下のフォーマットに従ってメッセージを送ります。" + rt +
+            "予約を追加するには、以下のフォーマットに従ってメッセージを送ります。" + rt + rt +
             "1 行目: 予約追加（または、団員予約）" + rt +
             "2 行目: < 公演名 >（制作チーフに聞いてください）" + rt +
             "3 行目: < 氏名 >" + rt +
@@ -38,23 +36,24 @@ namespace TicketManager.LineBotApi
             "6 行目: < 電話番号 >" + rt +
             "7 行目: < メールアドレス >";
         private static readonly string readUsageMessage =
-            "予約確認のメッセージフォーマットに従っていません。" + rt +
-            "予約を確認するには、以下のフォーマットに従ってメッセージを送ります。" + rt +
+            "予約を確認するには、以下のフォーマットに従ってメッセージを送ります。" + rt + rt +
             "1 行目: 予約確認（または、予約一覧）" + rt +
             "2 行目: <公演名>";
         private static readonly string editUsageMessage =
-            "予約変更のメッセージフォーマットに従っていません。" + rt +
-            "予約を変更するには、以下のフォーマットに従ってメッセージを送ります。" + rt +
+            "予約を変更するには、以下のフォーマットに従ってメッセージを送ります。" + rt + rt +
             "1 行目: 予約変更（または、予約編集）" + rt +
             "2 行目: <予約 ID>" + rt +
             "3 行目: <ステージ番号>" + rt +
             "4 行目: <人数>（新歓公演の場合は、<新入生の人数>）" + rt +
             "5 行目: <新入生以外の人数>（新歓公演の場合のみ）";
         private static readonly string deleteUsageMessage =
-            "予約削除のメッセージフォーマットに従っていません" + rt +
-            "予約を削除するには、以下のフォーマットに従ってメッセージを送ります。" + rt +
+            "予約を削除するには、以下のフォーマットに従ってメッセージを送ります。" + rt + rt +
             "1 行目: 予約削除（または、予約キャンセル）" + rt +
             "2 行目: <予約 ID>";
+        private static readonly string getRemainingSeatsUsageMessge =
+            "残席を確認するには、以下のフォーマットに従ってメッセージを送ります。" + rt + rt +
+            "1 行目: 残席確認（または、残席一覧）" + rt +
+            "2 行目: <公演名>";
 
         public static bool LineValidation(string signature, string text, string channelToken)
         {
@@ -398,13 +397,24 @@ namespace TicketManager.LineBotApi
             await context.SaveChangesAsync();
         }
 
-        public static string GetRemainingSeats(TicketContext context, string[] items)
+        public async static Task<string> GetRemainingSeats(TicketContext context, string[] items)
         {
+            if (items.Length != 2)
+            {
+                return getRemainingSeatsUsageMessge;
+            }
             string message = "残席一覧";
 
-            var stages = context.Stages
+            var stages = await context.Stages
                 .AsNoTracking()
-                .Where(s => s.DramaName == items[1]);
+                .Where(s => s.DramaName == items[1])
+                .ToArrayAsync();
+
+            if (stages.Length == 0)
+            {
+                throw new LineBotException($"{items[1]}という公演は存在しません");
+            }
+
             foreach (Stage s in stages)
             {
                 s.CountGuests(context);
