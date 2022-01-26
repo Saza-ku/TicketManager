@@ -21,11 +21,11 @@ namespace TicketManager.LineBotApi
         private readonly string rt;
 
         private readonly string usage = @"コマンド一覧:
-予約追加
-予約確認
-予約変更
-予約消去
-残席確認
+・予約追加
+・予約確認
+・予約変更
+・予約消去
+・残席確認
 
 詳細な使用方法は以下のページをご覧ください。
 http://ticket-manager-saza.herokuapp.com/Usage/Bot";
