@@ -437,7 +437,7 @@ namespace TicketManager.LineBotApi
             foreach (Stage s in stages)
             {
                 s.CountGuests(context);
-                message += rt + $"{s.Num}st: {s.StatusOfRemainingSeats} (残り{s.Max - s.CountOfGuests})";
+                message += rt + $"{s.Num}st: {s.StatusOfRemainingSeats}";
             }
 
             return message;
